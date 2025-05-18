@@ -4,22 +4,12 @@ class Solution(object):
         :type mat: List[List[int]]
         :rtype: List[int]
         """
-        count=0
-        ind={}
-        realc=0
-        for i in range(len(mat)):
-            count=0
-            for j in mat[i]:
-                if j==1:
-                    count +=1
-            realc=max(realc,count)
-            ind[i]=count
-        c=0
-        min_key=float("inf")
-        for k,v in ind.items():
-            if realc==v:
-                x=k
-                c +=1
-                min_key=min(min_key,k)
-        
-        return [min_key,realc]
+        cnt_max=-1
+        result_row=-1
+        for i, row in enumerate(mat):
+            cnt_ones = row.count(1)
+            if cnt_ones > cnt_max:
+                cnt_max = cnt_ones
+                result_row = i
+        return [result_row, cnt_max]
+            
