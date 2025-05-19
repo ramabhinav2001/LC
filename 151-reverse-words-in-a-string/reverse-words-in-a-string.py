@@ -10,8 +10,7 @@ class Solution(object):
                 x.append(arr[i])
             return x
 
-        arrstring=s.strip().split()
-        revsen=" ".join(reversearr(arrstring))
-        return revsen
+        return " ".join(reversearr(s.split()))
+       
 
 
