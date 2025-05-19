@@ -6,7 +6,6 @@ class Solution(object):
         """
         count=0
         n=len(num)
-        oddn=0
         for i in range(n-1,-1,-1):
             if int(num[i])%2==1:
                 return num[:i+1]
