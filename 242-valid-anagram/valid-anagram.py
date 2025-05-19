@@ -5,9 +5,14 @@ class Solution(object):
         :type t: str
         :rtype: bool
         """
-        s="".join(sorted(s))
-        t= "".join(sorted(t))
-        if s==t:
-            return True
-        return False
+        if len(s)!=len(t):
+            return False
+        hasd={}
+        for i in range(len(s)):
+            hasd[s[i]]=hasd.get(s[i],0)+1
+            hasd[t[i]]=hasd.get(t[i],0)-1
+        for i in hasd.values():
+            if i!=0:
+                return False
+        return True
             
