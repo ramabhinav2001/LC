@@ -7,11 +7,11 @@ class Solution(object):
         """
         x=[]
         for i in range(len(nums)):
-            x.append([i,nums[i]])
-        x.sort(key=lambda pair:-pair[1])
+            x.append([nums[i],i])
+        x.sort(key=lambda pair:-pair[0])
         x=x[:k]
-        x.sort(key=lambda pair:pair[0])
-        return [num for ind,num in x]
+        x.sort(key=lambda pair:pair[1])
+        return [num for num,ind in x]
         
         
 
