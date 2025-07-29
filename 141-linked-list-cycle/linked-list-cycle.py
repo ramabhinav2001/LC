@@ -10,11 +10,10 @@ class Solution(object):
         :type head: ListNode
         :rtype: bool
         """
-        curr=head
-        visited=set()
-        while curr is not None:
-            if curr in visited:
+        slow = fast = head
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+            if slow == fast:
                 return True
-            visited.add(curr)
-            curr=curr.next
         return False
