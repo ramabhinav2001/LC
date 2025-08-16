@@ -9,19 +9,22 @@ class Solution(object):
         :type head: Optional[ListNode]
         :rtype: bool
         """
-        arr = []
-
-        while head:
-            arr.append(head.val)
-            head = head.next
-        
-        left = 0
-        right = len(arr) - 1
-
-        while left < right:
-            if arr[left] != arr[right]:
+        slow=head
+        fast=head
+        while fast and fast.next:
+            slow=slow.next
+            fast=fast.next.next
+        node=None
+        while slow:
+            temp=slow.next
+            slow.next=node
+            node=slow
+            slow=temp
+        first=head
+        second=node
+        while second:
+            if first.val!=second.val:
                 return False
-            left += 1
-            right -= 1
-        
+            first=first.next
+            second=second.next
         return True
