@@ -9,19 +9,20 @@ class Solution(object):
         :type head: Optional[ListNode]
         :rtype: Optional[ListNode]
         """
-        if head.next == None:
-            return head.next
-        fast=head
-        count=0
-        while fast != None and fast.next !=None:
-            fast=fast.next.next
-            count +=1
+        if not head or head.next == None:
+            return None
         slow=head
-        for _ in range(count-1):
-            slow=slow.next
+        fast=head
+        prev=None
 
-        temp=slow.next.next
-        slow.next=temp
+        while fast != None and fast.next !=None:
+            prev=slow
+            slow=slow.next
+            fast=fast.next.next
+
+        if prev:
+            prev.next=slow.next
+        
         return head
 
 
