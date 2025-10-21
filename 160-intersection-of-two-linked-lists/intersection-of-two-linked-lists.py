@@ -14,13 +14,29 @@ class Solution(object):
             return None
         currA=headA
         currB=headB
-        while currA != currB:
-            if currA == None:
-                currA=headB
-            else:
-                currA=currA.next
-            if currB == None:
-                currB=headA
-            else:
-                currB=currB.next
+        countA=0
+        countB=0
+        while currA:
+            currA=currA.next
+            countA +=1
+        while currB:
+            currB=currB.next
+            countB +=1
+        currA=headA
+        currB=headB
+        if countA>countB:
+            diff=countA-countB
+            if  diff!=0:
+                for _ in range(diff):
+                    currA=currA.next
+                
+        else:
+            diff=countB-countA
+            if  diff!=0:
+                for _ in range(diff):
+                    currB=currB.next
+        while currA!=currB:
+            currA=currA.next
+            currB=currB.next
         return currA
+            
