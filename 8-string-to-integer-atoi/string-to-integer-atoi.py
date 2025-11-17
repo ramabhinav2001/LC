@@ -1,4 +1,13 @@
 class Solution:
+    def rounding(self,s,i,sign,ans):
+        if i>=len(s) or not s[i].isdigit():
+            return sign*ans
+        ans=ans*10+int(s[i])
+        if ans*sign>2**31 - 1:
+            return 2**31 - 1
+        if ans*sign<-2**31:
+            return -2**31
+        return self.rounding(s,i+1,sign,ans)
     def myAtoi(self, s: str) -> int:
         if not s:
             return 0
@@ -13,14 +22,6 @@ class Solution:
             else:
                 sign=1
             i +=1
-        ans=0
-        while i<n and s[i].isdigit():
-            ans=ans*10+int(s[i])
-            if ans*sign>2**31 - 1:
-                return 2**31 - 1
-            if ans*sign<-2**31:
-                return -2**31
-            i+=1
-        return sign*ans
+        return self.rounding(s,i,sign,0)
 
 
