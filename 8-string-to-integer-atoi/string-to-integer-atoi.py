@@ -1,9 +1,5 @@
-class Solution(object):
-    def myAtoi(self, s):
-        """
-        :type s: str
-        :rtype: int
-        """
+class Solution:
+    def myAtoi(self, s: str) -> int:
         if not s:
             return 0
         n=len(s)
@@ -26,3 +22,5 @@ class Solution(object):
                 return -2**31
             i+=1
         return sign*ans
+
+
