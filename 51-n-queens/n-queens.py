@@ -1,36 +1,26 @@
 class Solution:
     def solveNQueens(self, n: int) -> List[List[str]]:
-        def is_safe(board,ans,n,row,col):
-            for i in range(row):
-                if board[i][col] == 'Q':
-                    return False
-
-            i, j = row - 1, col - 1
-            while i >= 0 and j >= 0:
-                if board[i][j] == 'Q':
-                    return False
-                i -= 1
-                j -= 1
-
-            i, j = row - 1, col + 1
-            while i >= 0 and j < n:
-                if board[i][j] == 'Q':
-                    return False
-                i -= 1
-                j += 1
-
-            return True
             
-        def bt(board,ans,n,row):
-            if row==n:
-                ans.append(["".join(col) for col in board])
+        def bt(board,ans,n,col,leftrow,lowerleftd,upperleftd):
+            if col==n:
+                ans.append(["".join(row) for row in board])
                 return
-            for col in range(n):
-                if is_safe(board,ans,n,row,col):
+            for row in range(n):
+                if leftrow[row]==0 and lowerleftd[row+col]==0 and upperleftd[n-1+col-row]==0:
                     board[row][col]="Q"
-                    bt(board,ans,n,row+1)
+                    leftrow[row]=1
+                    lowerleftd[row+col]=1
+                    upperleftd[n-1+col-row]=1
+                    bt(board,ans,n,col+1,leftrow,lowerleftd,upperleftd)
                     board[row][col]="."
+                    leftrow[row]=0
+                    lowerleftd[row+col]=0
+                    upperleftd[n-1+col-row]=0
+
         ans=[]
         board=[["." for _ in range(n)]for _ in range(n)]
-        bt(board,ans,n,0)
+        leftrow=[0]*n
+        lowerleftd=[0]*(2*n-1)
+        upperleftd=[0]*(2*n-1)
+        bt(board,ans,n,0,leftrow,lowerleftd,upperleftd)
         return ans
