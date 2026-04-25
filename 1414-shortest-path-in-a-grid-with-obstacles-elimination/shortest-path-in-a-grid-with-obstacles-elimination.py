@@ -9,7 +9,7 @@ class Solution:
         visited = set()
         visited.add((0, 0, k))
         
-        i = 0  # pointer instead of pop(0)
+        i = 0
         
         directions = [(1,0), (-1,0), (0,1), (0,-1)]
         
