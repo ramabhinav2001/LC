@@ -12,4 +12,3 @@ class Solution:
                 n=n/2
                 x=x*x
         return ans
-        
