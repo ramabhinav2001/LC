@@ -2,15 +2,15 @@ class Solution:
     def isValid(self, s: str) -> bool:
         st=[]
         mapping={
-            ")":"(",
-            "}":"{",
-            "]":"["
+            "(":")",
+            "{":"}",
+            "[":"]"
         }
 
         for char in s:
-            if char in mapping.keys():
-                if not st or mapping[char]!=st.pop():
+            if char in mapping.values():
+                if not st or mapping[st.pop()]!=char:
                     return False
-            elif char in mapping.values():
+            else:
                 st.append(char)
         return not st
