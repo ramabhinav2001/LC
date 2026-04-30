@@ -1,15 +1,16 @@
 class Solution:
     def isValid(self, s: str) -> bool:
         st=[]
-        for i in range(len(s)):
-            if st:
-                top=st[-1]
-                if self.is_pair(top,s[i]):
-                    st.pop()
-                    continue
-            st.append(s[i])
+        mapping={
+            ")":"(",
+            "}":"{",
+            "]":"["
+        }
+
+        for char in s:
+            if char in mapping.keys():
+                if not st or mapping[char]!=st.pop():
+                    return False
+            elif char in mapping.values():
+                st.append(char)
         return not st
-    def is_pair(self,top,curr):
-        if top=="(" and curr==")" or top=="{" and curr=="}" or top=="[" and curr=="]":
-            return True
-        return False
