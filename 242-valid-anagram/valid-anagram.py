@@ -1,18 +1,14 @@
-class Solution(object):
-    def isAnagram(self, s, t):
-        """
-        :type s: str
-        :type t: str
-        :rtype: bool
-        """
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        dict1={}
         if len(s)!=len(t):
             return False
-        hasd={}
         for i in range(len(s)):
-            hasd[s[i]]=hasd.get(s[i],0)+1
-            hasd[t[i]]=hasd.get(t[i],0)-1
-        for i in hasd.values():
-            if i!=0:
+            dict1[s[i]]=dict1.get(s[i],0)+1
+        for i in range(len(t)):
+            if t[i] in dict1:
+                dict1[t[i]] -=1
+        for i in dict1.values():
+            if i>0:
                 return False
         return True
-            
