@@ -3,9 +3,10 @@ class Solution:
         cars=sorted(zip(position,speed))
         st=[]
 
-        for p,s in sorted(cars)[::-1]:
+        for p,s in cars[::-1]:
             time_taken=(target-p)/s
             if not st or time_taken>st[-1]:
                 st.append(time_taken)
         return len(st)
+        
             
