@@ -10,9 +10,8 @@ class Solution:
                 current = num
 
                 while current + 1 in num_set:
-                    current += 1
                     length += 1
-
+                    current += 1
                 longest = max(longest, length)
 
         return longest
