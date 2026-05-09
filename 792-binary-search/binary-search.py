@@ -13,4 +13,3 @@ class Solution:
                 high -=1
         if low>high:
             return -1
-        return low
