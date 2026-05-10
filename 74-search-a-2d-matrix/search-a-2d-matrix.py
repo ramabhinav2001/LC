@@ -1,10 +1,5 @@
-class Solution(object):
-    def searchMatrix(self, matrix, target):
-        """
-        :type matrix: List[List[int]]
-        :type target: int
-        :rtype: bool
-        """
+class Solution:
+    def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
         n=len(matrix)
         m=len(matrix[0])
         low=0
@@ -13,11 +8,11 @@ class Solution(object):
             mid=(low+high)//2
             x=mid//m
             y=mid%m
-            if target==matrix[x][y]:
+            if matrix[x][y]==target:
                 return True
-            elif target>matrix[x][y]:
-                low=mid+1
+            if matrix[x][y]<target:
+                low+=1
             else:
-                high=mid-1
+                high -=1
         return False
 
